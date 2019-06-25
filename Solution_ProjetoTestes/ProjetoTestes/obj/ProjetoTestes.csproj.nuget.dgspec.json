@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\vinic\\source\\repos\\Solution_ProjetoTestes\\ProjetoTestes\\ProjetoTestes.csproj": {}
+    "C:\\Users\\vinic\\source\\repos\\Robots---Robocode\\Solution_ProjetoTestes\\ProjetoTestes\\ProjetoTestes.csproj": {}
   },
   "projects": {
-    "C:\\Users\\vinic\\source\\repos\\Solution_ProjetoTestes\\ProjetoTestes\\ProjetoTestes.csproj": {
+    "C:\\Users\\vinic\\source\\repos\\Robots---Robocode\\Solution_ProjetoTestes\\ProjetoTestes\\ProjetoTestes.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vinic\\source\\repos\\Solution_ProjetoTestes\\ProjetoTestes\\ProjetoTestes.csproj",
+        "projectUniqueName": "C:\\Users\\vinic\\source\\repos\\Robots---Robocode\\Solution_ProjetoTestes\\ProjetoTestes\\ProjetoTestes.csproj",
         "projectName": "VDP.FirstRobotTest_0.1",
-        "projectPath": "C:\\Users\\vinic\\source\\repos\\Solution_ProjetoTestes\\ProjetoTestes\\ProjetoTestes.csproj",
+        "projectPath": "C:\\Users\\vinic\\source\\repos\\Robots---Robocode\\Solution_ProjetoTestes\\ProjetoTestes\\ProjetoTestes.csproj",
         "packagesPath": "C:\\Users\\vinic\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vinic\\source\\repos\\Solution_ProjetoTestes\\ProjetoTestes\\obj\\",
+        "outputPath": "C:\\Users\\vinic\\source\\repos\\Robots---Robocode\\Solution_ProjetoTestes\\ProjetoTestes\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

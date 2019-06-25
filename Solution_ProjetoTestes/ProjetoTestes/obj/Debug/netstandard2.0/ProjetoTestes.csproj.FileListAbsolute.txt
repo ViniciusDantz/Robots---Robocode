@@ -10,3 +10,15 @@ C:\Users\vinic\source\repos\Solution_ProjetoTestes\ProjetoTestes\obj\Debug\netst
 C:\Users\vinic\source\repos\Solution_ProjetoTestes\ProjetoTestes\obj\Debug\netstandard2.0\ProjetoTestes.csproj.CopyComplete
 C:\Users\vinic\source\repos\Solution_ProjetoTestes\ProjetoTestes\obj\Debug\netstandard2.0\VDP.FirstRobotTest_0.1.dll
 C:\Users\vinic\source\repos\Solution_ProjetoTestes\ProjetoTestes\obj\Debug\netstandard2.0\VDP.FirstRobotTest_0.1.pdb
+C:\Users\vinic\source\repos\Robots---Robocode\Solution_ProjetoTestes\ProjetoTestes\bin\Debug\netstandard2.0\VDP.FirstRobotTest_0.1.deps.json
+C:\Users\vinic\source\repos\Robots---Robocode\Solution_ProjetoTestes\ProjetoTestes\bin\Debug\netstandard2.0\VDP.FirstRobotTest_0.1.dll
+C:\Users\vinic\source\repos\Robots---Robocode\Solution_ProjetoTestes\ProjetoTestes\bin\Debug\netstandard2.0\VDP.FirstRobotTest_0.1.pdb
+C:\Users\vinic\source\repos\Robots---Robocode\Solution_ProjetoTestes\ProjetoTestes\bin\Debug\netstandard2.0\robocode.dll
+C:\Users\vinic\source\repos\Robots---Robocode\Solution_ProjetoTestes\ProjetoTestes\bin\Debug\netstandard2.0\robocode.xml
+C:\Users\vinic\source\repos\Robots---Robocode\Solution_ProjetoTestes\ProjetoTestes\obj\Debug\netstandard2.0\ProjetoTestes.csprojAssemblyReference.cache
+C:\Users\vinic\source\repos\Robots---Robocode\Solution_ProjetoTestes\ProjetoTestes\obj\Debug\netstandard2.0\ProjetoTestes.csproj.CoreCompileInputs.cache
+C:\Users\vinic\source\repos\Robots---Robocode\Solution_ProjetoTestes\ProjetoTestes\obj\Debug\netstandard2.0\ProjetoTestes.AssemblyInfoInputs.cache
+C:\Users\vinic\source\repos\Robots---Robocode\Solution_ProjetoTestes\ProjetoTestes\obj\Debug\netstandard2.0\ProjetoTestes.AssemblyInfo.cs
+C:\Users\vinic\source\repos\Robots---Robocode\Solution_ProjetoTestes\ProjetoTestes\obj\Debug\netstandard2.0\ProjetoTestes.csproj.CopyComplete
+C:\Users\vinic\source\repos\Robots---Robocode\Solution_ProjetoTestes\ProjetoTestes\obj\Debug\netstandard2.0\VDP.FirstRobotTest_0.1.dll
+C:\Users\vinic\source\repos\Robots---Robocode\Solution_ProjetoTestes\ProjetoTestes\obj\Debug\netstandard2.0\VDP.FirstRobotTest_0.1.pdb
