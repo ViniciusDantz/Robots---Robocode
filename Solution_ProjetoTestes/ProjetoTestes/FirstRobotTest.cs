@@ -10,6 +10,7 @@ namespace VDP
         public override bool IsAdjustGunForRobotTurn { get => base.IsAdjustGunForRobotTurn; set => base.IsAdjustGunForRobotTurn = value; }
         int walk = 50;
         int quantRobots;
+        double[,] time_Energy = new Double[2, 2];
         public override bool Equals(object obj)
         {
             return base.Equals(obj);
@@ -62,9 +63,15 @@ namespace VDP
         //-------------------------------Muro-------------------------------------
         public override void OnHitWall(HitWallEvent evnt)
         {
-                
-            TurnLeft(180);
+            /*TurnLeft(180);
             Ahead(50);
+            TurnRadarRight(360);*/
+            //Back(5);
+            //if(evnt.Bearing == )
+            SetTurnRight(Utils.NormalRelativeAngleDegrees(180 + evnt.Bearing));
+            SetTurnRadarRight(360);
+            Execute();
+            //Desvia();
         }
 
         public override void OnKeyPressed(KeyEvent e)
@@ -156,32 +163,50 @@ namespace VDP
             {
                 base.FireBullet(1);
             }*/
-            if(GunHeat == 0 && Math.Abs(RadarTurnRemaining) < 1)//ou até o inimigo parar de ser CRAZY
+            if(evnt.Energy <= 16)
+            {
+                Ahead(evnt.Distance);
+            }
+            if(GunHeat == 0 && Math.Abs(RadarTurnRemaining) < 1 && evnt.Distance < 100)
             {
                 Fire(Math.Min(400 / evnt.Distance, 3));
             }
             Scan();
-
         }
 
         public void Desvia()
         {
-            TurnRight(Utils.NormalRelativeAngleDegrees(90 + (Heading - RadarHeading)));
-            Ahead(walk);
+            SetTurnRight(Utils.NormalRelativeAngleDegrees(90 + (Heading - RadarHeading)));
+            SetAhead(walk);
             walk *= -1;
             Scan();
+            Execute();
             //TurnRadarRight(45);
             //TurnRadarLeft(90);
+        }
+        public void upTime_Energy(double time, double energy)
+        {
+            if(time != time_Energy[0, 0])
+            {
+                time_Energy[1, 0] = time_Energy[0, 0];
+                time_Energy[1, 1] = time_Energy[0, 1];
+                time_Energy[0, 0] = time;
+                time_Energy[0, 1] = energy;
+            }
         }
         public override void OnScannedRobot(ScannedRobotEvent evnt)
         {
             SetTurnRadarRight(Utils.NormalRelativeAngleDegrees(Heading + evnt.Bearing - RadarHeading));
             SetTurnGunRight(Utils.NormalRelativeAngleDegrees(Heading + evnt.Bearing - GunHeading));
+            upTime_Energy(evnt.Time, evnt.Energy);
             if(evnt.Distance > 100)
             {
-
-                TurnRight(Utils.NormalRelativeAngleDegrees(evnt.Bearing));
-                Ahead(120);
+                SetTurnRight(Utils.NormalRelativeAngleDegrees(evnt.Bearing));
+                /*do
+                {
+                    SetAhead(100);
+                } while (evnt.Distance == 10);*/
+                Execute();
                 /*if(Heading == 90)
                 {
                     TurnLeft(90);
@@ -197,7 +222,15 @@ namespace VDP
                     Ahead();
                 }*/
             }
-            Atira(evnt);
+            if(time_Energy[0, 1] < time_Energy[1, 1])
+            {
+                TurnGunRight(Utils.NormalRelativeAngleDegrees(Heading + evnt.Bearing - GunHeading));
+                Fire(0.1);
+            }
+            else
+            {
+                Atira(evnt);
+            }
             Execute();
             /*quantRobots = Others;
             if(quantRobots > 2)
@@ -325,6 +358,10 @@ namespace VDP
             SetColors(Color.DarkRed, Color.Black, Color.Gray);
             IsAdjustGunForRobotTurn = true;
             IsAdjustRadarForGunTurn = true;
+            time_Energy[0, 0] = 0;
+            time_Energy[0, 1] = 0;
+            time_Energy[1, 0] = 0;
+            time_Energy[1, 1] = 0;
             while (true)
             {
                 TurnRadarRight(360);

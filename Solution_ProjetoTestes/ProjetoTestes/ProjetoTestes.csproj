@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Reference Include="robocode">
-      <HintPath>..\..\..\..\..\..\robocode\libs\robocode.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\robocode\libs\robocode.dll</HintPath>
     </Reference>
   </ItemGroup>
 
