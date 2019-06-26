@@ -9,8 +9,9 @@ namespace VDP
     {
         public override bool IsAdjustGunForRobotTurn { get => base.IsAdjustGunForRobotTurn; set => base.IsAdjustGunForRobotTurn = value; }
         int walk = 50;
-        int quantRobots;
-        double[,] time_Energy = new Double[2, 2];
+        double changeDirection = 90;
+        double changeAhead;
+        double[,] enemy_data = new Double[2, 4];
         public override bool Equals(object obj)
         {
             return base.Equals(obj);
@@ -184,28 +185,36 @@ namespace VDP
             //TurnRadarRight(45);
             //TurnRadarLeft(90);
         }
-        public void upTime_Energy(double time, double energy)
+        public void updateEnemy(double time, double energy, double distance, double velocity)
         {
-            if(time != time_Energy[0, 0])
+            if(time != enemy_data[0, 0])
             {
-                time_Energy[1, 0] = time_Energy[0, 0];
-                time_Energy[1, 1] = time_Energy[0, 1];
-                time_Energy[0, 0] = time;
-                time_Energy[0, 1] = energy;
+                enemy_data[1, 0] = enemy_data[0, 0];
+                enemy_data[1, 1] = enemy_data[0, 1];
+                enemy_data[1, 2] = enemy_data[0, 2];
+                enemy_data[1, 3] = enemy_data[0, 3];
+                enemy_data[0, 0] = time;
+                enemy_data[0, 1] = energy;
+                enemy_data[0, 2] = distance;
+                enemy_data[0, 3] = velocity;
             }
         }
         public override void OnScannedRobot(ScannedRobotEvent evnt)
         {
             SetTurnRadarRight(Utils.NormalRelativeAngleDegrees(Heading + evnt.Bearing - RadarHeading));
             SetTurnGunRight(Utils.NormalRelativeAngleDegrees(Heading + evnt.Bearing - GunHeading));
-            upTime_Energy(evnt.Time, evnt.Energy);
+            updateEnemy(evnt.Time, evnt.Energy, evnt.Distance, evnt.Velocity);
+            if(enemy_data[0, 2] < enemy_data[1, 2] && enemy_data[0, 3] == enemy_data[1, 3])
+            {
+                Fire(3);
+            }
             if(evnt.Distance > 100)
             {
                 SetTurnRight(Utils.NormalRelativeAngleDegrees(evnt.Bearing));
-                /*do
+                do
                 {
                     SetAhead(100);
-                } while (evnt.Distance == 10);*/
+                } while (evnt.Distance == 10);
                 Execute();
                 /*if(Heading == 90)
                 {
@@ -222,10 +231,24 @@ namespace VDP
                     Ahead();
                 }*/
             }
-            if(time_Energy[0, 1] < time_Energy[1, 1])
+            if(enemy_data[0, 1] < enemy_data[1, 1] && (enemy_data[0, 1] - enemy_data[1, 1]) < 3 && evnt.Distance > 200)
             {
-                TurnGunRight(Utils.NormalRelativeAngleDegrees(Heading + evnt.Bearing - GunHeading));
-                Fire(0.1);
+                //TurnGunRight(Utils.NormalRelativeAngleDegrees(Heading + evnt.Bearing - GunHeading));
+                TurnRight(Utils.NormalRelativeAngleDegrees(evnt.Bearing + changeDirection));
+                changeDirection *= -1;
+                /*if (evnt.Distance <= 200)//40
+                {
+                    SetTurnGunRight(Utils.NormalRelativeAngleDegrees(evnt.Bearing));
+                    Fire(1);
+                    Execute();
+                }
+                else
+                {
+                }*/
+                changeAhead = 50;
+                SetAhead(changeAhead);
+                Execute();
+                Scan();
             }
             else
             {
@@ -358,10 +381,15 @@ namespace VDP
             SetColors(Color.DarkRed, Color.Black, Color.Gray);
             IsAdjustGunForRobotTurn = true;
             IsAdjustRadarForGunTurn = true;
-            time_Energy[0, 0] = 0;
-            time_Energy[0, 1] = 0;
-            time_Energy[1, 0] = 0;
-            time_Energy[1, 1] = 0;
+            enemy_data[0, 0] = 0;
+            enemy_data[0, 1] = 0;
+            enemy_data[0, 2] = 0;
+            enemy_data[0, 3] = 0;
+            enemy_data[1, 0] = 0;
+            enemy_data[1, 1] = 0;
+            enemy_data[1, 2] = 0;
+            enemy_data[1, 3] = 0;
+
             while (true)
             {
                 TurnRadarRight(360);
