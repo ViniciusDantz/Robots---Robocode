@@ -1,0 +1,2 @@
+http://robowiki.net/wiki/Teams
+https://robocode.sourceforge.io/docs/robocode/robocode/TeamRobot.html
